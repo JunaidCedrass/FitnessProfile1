@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MessageCard(Message("Junaid", "Fitness Profile"))
+            MessageCardPreview()
             DifferentFonts(Message("Junaid", "Fitness Profile"))
         }
     }
@@ -28,12 +29,12 @@ class MainActivity : ComponentActivity() {
 data class Message(val author: String, val body: String)
 
 @Composable
-fun MessageCard(msg: Message) {
+fun MessageCard() {
     Column(modifier = Modifier
         .padding(all = 9.dp)
         .background(color = Color.White)){
         Row(
-            modifier = Modifier
+            modifier = Modifier.clip(RoundedCornerShape(10.dp))
                 .padding(all = 9.dp)
                 .width(260.dp)
                 .height(80.dp)
@@ -47,12 +48,13 @@ fun MessageCard(msg: Message) {
             Column{
                 Text("Junaid",
                         fontSize = 20.sp,
-                        color = Color.Red)
-                Text("Cedrass",
+                        color = Color.Black)
+                Text("Cedrass, 22",
                         fontSize = 20.sp,
-                        color = Color.Red)
-                Text("ID:2334342123",
-                        color = Color.Red)
+                        color = Color.Black)
+                Text("Student Number: 219090912",
+                        fontSize = 7.sp,
+                        color = Color.Black)
 
                 Spacer(modifier = Modifier.height(10.dp))
             }
@@ -61,9 +63,9 @@ fun MessageCard(msg: Message) {
         Row(
             modifier = Modifier
                 .padding(all = 10.dp)
-                .background(color = Color.Blue, RoundedCornerShape(5.dp))
+                .background(color = Color.Gray)
                 .width(280.dp)
-                .height(50.dp)
+                .height(42.dp)
         ) {
             Spacer(modifier = Modifier.width(20.dp))
             Spacer(modifier = Modifier.height(20.dp))
@@ -72,6 +74,9 @@ fun MessageCard(msg: Message) {
                 Text("Height",
                 fontSize = 15.sp,
                 color = Color.White)
+                Text("1.69m",
+                    fontSize = 10.sp,
+                color = Color.Black)
             }
 
             Spacer(modifier = Modifier.width(20.dp))
@@ -80,9 +85,9 @@ fun MessageCard(msg: Message) {
                 Text("Glucose",
                 fontSize = 15.sp,
                 color = Color.White)
-                Text("69.6",
-                fontSize = 15.sp,
-                color = Color.White)
+                Text("120mg/dl",
+                fontSize = 10.sp,
+                color = Color.Black)
             }
 
             Spacer(modifier = Modifier.width(20.dp))
@@ -91,6 +96,9 @@ fun MessageCard(msg: Message) {
                 Text("Blood Pressure",
                 fontSize = 15.sp,
                 color = Color.White)
+                Text("90/75mmHg",
+                fontSize = 10.sp,
+                color = Color.Black)
             }
         }
     }
@@ -102,10 +110,8 @@ fun DifferentFonts(msg: Message){
 }
 @Preview
 @Composable
-fun MessageCard() {
-    MessageCard(
-        msg = Message("Colleague", "Looks whats happening")
-    )
+fun MessageCardPreview() {
+    MessageCard()
     DifferentFonts(
         msg = Message("Colleague", "Looks whats happening")
     )
